@@ -2,7 +2,7 @@
 
 ![badge-mit][] ![badge-languages][] ![badge-pms][] ![badge-platforms][]
 
-A property wrapper to save `Codable` objects in `UserDefaults`. Support following built-in types:
+A property wrapper to save `Codable` objects in `UserDefaults`. Supports following built-in types:
 
 - `String`
 - `Bool`
