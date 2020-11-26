@@ -7,11 +7,11 @@ import Foundation
 
 @propertyWrapper
 public struct UserDefaultsBacked<Value> where Value: Codable {
-    let key: String
-    let defaultValue: Value
-    var userDefaults: UserDefaults
+    public let key: String
+    public let defaultValue: Value
+    public let userDefaults: UserDefaults
 
-    init(_ key: String, defaultValue: Value, userDefaults: UserDefaults = .standard) {
+    public init(_ key: String, defaultValue: Value, userDefaults: UserDefaults = .standard) {
         self.key = key
         self.defaultValue = defaultValue
         self.userDefaults = userDefaults
@@ -27,7 +27,7 @@ public struct UserDefaultsBacked<Value> where Value: Codable {
     }
 
     // MARK: Private
-    func value(for key: String) -> Value {
+    private func value(for key: String) -> Value {
         if isCodableType(Value.self) {
             guard let value = userDefaults.value(forKey: key) as? Value else {
                 return defaultValue
@@ -44,7 +44,7 @@ public struct UserDefaultsBacked<Value> where Value: Codable {
         }
     }
 
-    func set(_ value: Value, for key: String) {
+    private func set(_ value: Value, for key: String) {
         if let optional = value as? AnyOptional, optional.isNil {
             userDefaults.removeObject(forKey: key)
         } else if isCodableType(Value.self) {
@@ -59,7 +59,7 @@ public struct UserDefaultsBacked<Value> where Value: Codable {
         }
     }
 
-    func isCodableType<Value>(_ type: Value.Type) -> Bool {
+    private func isCodableType<Value>(_ type: Value.Type) -> Bool {
         switch type {
         case is String.Type,
              is Bool.Type,
