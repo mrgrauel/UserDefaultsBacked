@@ -21,6 +21,12 @@ final class UserDefaultsBackedTests: XCTestCase {
 
     @UserDefaultsBacked("codable")
     var codable: Mock?
+    
+    @UserDefaultsBacked("url", defaultValue: URL(string: "https://www.google.com")!)
+    var url: URL
+    
+    @UserDefaultsBacked("data", defaultValue: Data())
+    var data: Data
 
     override func setUpWithError() throws {
         UserDefaults.standard.reset()
@@ -30,6 +36,19 @@ final class UserDefaultsBackedTests: XCTestCase {
     override func tearDownWithError() throws {
         UserDefaults.standard.reset()
         Self.userDefaults.reset()
+    }
+    
+    func testData() {
+        XCTAssertEqual(self.data, Data())
+        let stringData = "String".data(using: .utf8)!
+        self.data = stringData
+        XCTAssertEqual(self.data, stringData)
+    }
+    
+    func testURL() {
+        XCTAssertEqual(url.absoluteString, "https://www.google.com")
+        url = URL(string: "https://www.github.com")!
+        XCTAssertEqual(url.absoluteString, "https://www.github.com")
     }
 
     func testSample() {

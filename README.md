@@ -2,15 +2,7 @@
 
 ![badge-mit][] ![badge-languages][] ![badge-pms][] ![badge-platforms][]
 
-A property wrapper to save `Codable` objects in `UserDefaults`. Supports following built-in types:
-
-- `String`
-- `Bool`
-- `Int`
-- `Float`
-- `Double`
-- `Date`
-
+A property wrapper to save `Codable` objects in `UserDefaults`.  
 Inspired by https://www.swiftbysundell.com/articles/property-wrappers-in-swift/.
 
 ### Getting Started
